@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 const ImageSlider = ({ slides, interval = 2000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const toNext = useCallback(() => {
+    const isLastSlide = currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  }, [currentIndex, slides.length]);
 
   useEffect(() => {
     const autoSlide = setInterval(() => {
@@ -9,7 +15,7 @@ const ImageSlider = ({ slides, interval = 2000 }) => {
     }, interval);
 
     return () => clearInterval(autoSlide); // Clean up the interval on component unmount
-  }, [currentIndex, interval]);
+  }, [toNext, interval]);
 
   const slidesStyles = {
     width: "100%",
@@ -21,42 +27,35 @@ const ImageSlider = ({ slides, interval = 2000 }) => {
   };
 
   const leftArrowStyles = {
-    position:"absolute",
+    position: "absolute",
     top: "50%",
     transform: "translate(0, -50%)",
     left: "32px",
     fontSize: "2rem",
     zIndex: 1,
-    cursor: "pointer" 
-  }
+    cursor: "pointer"
+  };
 
-  const RightArrowStyles = {
-    position:"absolute",
+  const rightArrowStyles = {
+    position: "absolute",
     top: "50%",
     transform: "translate(0, -50%)",
     right: "32px",
     fontSize: "2rem",
     zIndex: 1,
-    cursor: "pointer" 
-  }
+    cursor: "pointer"
+  };
 
   const toPrev = () => {
-    const isFirstSlide = currentIndex === 0
-    const newIndex = isFirstSlide ? slides.length - 1 :  currentIndex
-    setCurrentIndex(newIndex)
-  }
-
-  const toNext = () => {
-    const isLastSlide = currentIndex === slides.length - 1
-    const newIndex = isLastSlide ? 0 : currentIndex + 1
-
-    setCurrentIndex(newIndex)
-  }
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
 
   return (
-    <div style={{height:"100%", position:"relative"}}>
-        <div style={leftArrowStyles} onClick={toPrev}>❮</div>
-        <div style={RightArrowStyles} onClick={toNext}>❯</div>
+    <div style={{ height: "100%", position: "relative" }}>
+      <div style={leftArrowStyles} onClick={toPrev}>❮</div>
+      <div style={rightArrowStyles} onClick={toNext}>❯</div>
       <div style={slidesStyles}></div>
     </div>
   );

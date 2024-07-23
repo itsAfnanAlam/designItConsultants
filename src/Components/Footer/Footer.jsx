@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Footer.scss"
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -10,9 +11,9 @@ const Footer = () => {
         </div>
         <div className="socials">
             <ul>
-                <li><a href="">Insta</a></li>
-                <li><a href="">Insta</a></li>
-                <li><a href="">Insta</a></li>
+                <li><Link to="/">Insta</Link></li>
+                <li><Link to="/">Insta</Link></li>
+                <li><Link to="/">Insta</Link></li>
             </ul>
         </div>
         <div className="address">
