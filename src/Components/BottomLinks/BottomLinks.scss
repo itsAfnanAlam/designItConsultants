@@ -1,0 +1,49 @@
+.BottomLinks-container {
+    position: fixed;
+    right: 57px;
+    bottom: 12.5px;
+    height: 35px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 0.67rem;
+    
+    .links {
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        font-size: 1.2rem;
+        border-radius: 20%;
+        height: 30px;
+        width: 30px;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all ease 0.5s;
+
+        &:first-child {
+            width: fit-content;
+            padding: 5px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            display: flex;
+            gap: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+
+            &:hover {
+                gap: 5px;
+            }
+        }
+
+        .link-btn {
+            height: 20px;
+            width: 20px;
+        }
+
+        &:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+}

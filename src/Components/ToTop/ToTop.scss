@@ -1,0 +1,45 @@
+$phone-max-width: 479px;
+$tablet-max-width: 767px;
+
+@mixin phone {
+  @media screen and (max-width: $phone-max-width) {
+    @content;
+  }
+}
+
+// Media query for medium tablet devices
+@mixin tablet {
+  @media screen and (max-width: $tablet-max-width) {
+    @content;
+  }
+}
+
+.topBtn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  height: 30px;
+  width: 30px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid black;
+  color: black;
+  // border: none;
+  // font-weight: bolder;
+  transition: all ease 0.5s;
+  border-radius: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgb(0, 0, 0);
+    color: white;
+  }
+
+  // @include phone {
+  //   height: 32px;
+  //   width: 32px;
+  // }
+}
